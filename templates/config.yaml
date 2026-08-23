@@ -1,0 +1,36 @@
+# 知识库系统配置
+# ====================
+# 初始化后由知识库管理师自动写入 wiki/.meta/config.yaml
+# 用于存储实例化后的配置项，使系统可在不同用户环境间复用。
+
+# 知识库路径
+knowledge_base_path: ""  # 例如: /Users/xxx/Documents/knowledge-base
+
+# Agent 身份（由用户配置）
+agent_ids:
+  kb_manager: ""      # 知识库管理师 Agent ID
+  kb_qa: ""           # 知识问答与沉淀师 Agent ID
+
+# 定时任务（可选，不配置则仅支持手动触发）
+cron_jobs:
+  ingest_scan:
+    enabled: false
+    cron: "0 2 * * 1"        # 每周一 02:00
+    message: "执行 Ingest 扫描"
+  delete_scan:
+    enabled: false
+    cron: "0 2 1,15 * *"     # 每月 1、15 号 02:00
+    message: "执行 Delete 扫描"
+  lint_check:
+    enabled: false
+    cron: "0 2 1 * *"        # 每月 1 号 02:00
+    message: "执行 Lint 检查"
+
+# Embedding 配置（MCP 演进阶段使用，当前可留空）
+embedding:
+  mode: null            # null / cloud / local
+  model: ""             # 例如: text-embedding-3-small
+  api_key_env: ""       # 环境变量名，如 OPENAI_API_KEY
+
+# 知识库数量（预留多知识库支持，当前固定 1）
+kb_count: 1
